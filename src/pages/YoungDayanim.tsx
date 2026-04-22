@@ -2,87 +2,98 @@ import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import NewsTicker from '@/components/NewsTicker';
 
+const sections = [
+  {
+    title: 'חזון',
+    text: 'מיזם "דיינים צעירים" מבקש לקרב ילדים ובני נוער ללימוד הגמרא וההלכה בדרך חיה, חווייתית ומשמעותית. התוכנית שמה לה למטרה להקנות אהבת תורה, הבנה מעמיקה ויכולת יישום בסוגיות מרכזיות בדיני ממונות.',
+  },
+  {
+    title: 'הדרך',
+    text: 'בלב התוכנית עומד מודל ייחודי של בית דין כיתתי פעיל, שבו תלמידי הכיתה לוקחים חלק מלא בתהליך הלמידה – כדיינים, כבעלי דין, כעדים וכיועצים. במסגרת זו נידונים מקרים אמיתיים מחיי היום-יום, המאפשרים לתלמידים ליישם בפועל את הסוגיות הנלמדות.',
+    text2: 'הפעילות מתקיימת בליווי והכוונה מקצועית של רבני המכון, בשיתוף המחנכים והמורים, תוך דגש על למידה פעילה, חשיבה עצמאית ויכולת הסקה מתוך מקורות הגמרא.',
+  },
+  {
+    title: 'התוצאה',
+    text: 'התלמידים מפתחים חיבור עמוק ללימוד, אחריות אישית, חשיבה חדה ויכולת ניתוח הלכתי – תוך חוויה לימודית מעשירה, מרתקת ורלוונטית לחיים.',
+  },
+];
+
 export default function YoungDayanim() {
   return (
     <>
       <SiteHeader />
       <NewsTicker />
 
-      <main className="pt-24 min-h-screen">
-        <section className="section-container py-16">
+      <main className="min-h-screen" dir="rtl">
 
-          {/* כותרת */}
-          <h1 className="font-display text-4xl font-bold text-primary mb-8 text-center">
-            דיינים צעירים
-          </h1>
-
-          {/* Hero Image */}
-          <div className="flex justify-center mb-10">
-            <div className="relative">
-              
-              <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-110"></div>
-              
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-white shadow-xl overflow-hidden flex items-center justify-center bg-gradient-to-br from-white to-gray-100">
-                <img
-                  src="/sodhamishpat.jpg"
-                  alt="סוד המשפט"
-                  className="w-4/5 h-4/5 object-contain transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-            </div>
+        {/* ===== Hero Banner ===== */}
+        <section className="relative pt-32 pb-24 overflow-hidden flex items-center justify-center text-center">
+          <img src="/shomron.jpg" alt="השומרון" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+            <div className="absolute top-20 right-20 w-72 h-72 rounded-full bg-yellow-400 blur-3xl" />
+            <div className="absolute bottom-10 left-20 w-96 h-96 rounded-full bg-blue-400 blur-3xl" />
           </div>
 
-          {/* תוכן */}
-          <div className="max-w-3xl mx-auto space-y-8 text-foreground/80 leading-relaxed text-right">
-
-            {/* חזון */}
-            <div>
-              <h2 className="font-display text-2xl font-bold text-primary mb-3">
-                חזון
-              </h2>
-              <p>
-                מיזם “דיינים צעירים” מבקש לקרב ילדים ובני נוער ללימוד הגמרא וההלכה בדרך חיה,
-                חווייתית ומשמעותית. התוכנית שמה לה למטרה להקנות אהבת תורה, הבנה מעמיקה
-                ויכולת יישום בסוגיות מרכזיות בדיני ממונות.
-              </p>
+          <div className="relative z-10 text-white px-6" style={{ animation: 'fadeInUp 0.6s ease-out both' }}>
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm mb-8">
+              <span className="text-sm">✦</span>
+              <span className="text-sm font-medium">מיזם חינוכי ייחודי</span>
             </div>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
+              דיינים צעירים
+            </h1>
+            <p className="text-yellow-400 text-xl sm:text-2xl font-bold mb-4">
+              בסוד המשפט
+            </p>
+            <p className="text-white/70 text-lg max-w-xl mx-auto mb-10">
+              לימוד גמרא והלכה בדרך חיה, חווייתית ומשמעותית
+            </p>
 
-            {/* הדרך */}
-            <div>
-              <h2 className="font-display text-2xl font-bold text-primary mb-3">
-                הדרך
-              </h2>
-              <p>
-                בלב התוכנית עומד מודל ייחודי של בית דין כיתתי פעיל, שבו תלמידי הכיתה לוקחים
-                חלק מלא בתהליך הלמידה – כדיינים, כבעלי דין, כעדים וכיועצים. במסגרת זו נידונים
-                מקרים אמיתיים מחיי היום-יום, המאפשרים לתלמידים ליישם בפועל את הסוגיות הנלמדות.
-              </p>
-              <p className="mt-3">
-                הפעילות מתקיימת בליווי והכוונה מקצועית של רבני המכון, בשיתוף המחנכים והמורים,
-                תוך דגש על למידה פעילה, חשיבה עצמאית ויכולת הסקה מתוך מקורות הגמרא.
-              </p>
+            {/* לוגו סוד המשפט */}
+            <div
+              className="flex justify-center"
+              style={{ animation: 'fadeInUp 0.6s ease-out 0.3s both' }}
+            >
+              <img
+                src="/sodhamishpat.jpg"
+                alt="סוד המשפט"
+                className="w-52 h-52 sm:w-64 sm:h-64 object-contain drop-shadow-2xl hover:scale-105 transition duration-500"
+              />
             </div>
+          </div>
+        </section>
 
-            {/* התוצאה */}
-            <div>
-              <h2 className="font-display text-2xl font-bold text-primary mb-3">
-                התוצאה
-              </h2>
-              <p>
-                התלמידים מפתחים חיבור עמוק ללימוד, אחריות אישית, חשיבה חדה ויכולת ניתוח הלכתי –
-                תוך חוויה לימודית מעשירה, מרתקת ורלוונטית לחיים.
-              </p>
-            </div>
+        {/* ===== תוכן ===== */}
+        <section className="relative overflow-hidden">
+          <img src="/shomron.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
+          <div className="absolute inset-0 bg-black/75" />
+
+          <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-white space-y-6">
+
+            {sections.map(({ title, text, text2 }, i) => (
+              <div
+                key={title}
+                className="rounded-2xl border border-white/15 bg-white/8 backdrop-blur-sm px-6 py-6"
+                style={{ animation: `fadeInUp 0.6s ease-out ${0.1 + i * 0.1}s both` }}
+              >
+                <h2 className="font-display text-xl font-bold text-yellow-400 mb-3 flex items-center gap-2">
+                  <span>✦</span> {title}
+                </h2>
+                <p className="text-white/80 leading-relaxed text-sm">{text}</p>
+                {text2 && <p className="text-white/70 leading-relaxed text-sm mt-3">{text2}</p>}
+              </div>
+            ))}
 
             {/* וידאו */}
-            <div className="mt-12">
-              <h2 className="font-display text-2xl font-bold text-primary mb-6 text-center">
+            <div style={{ animation: 'fadeInUp 0.6s ease-out 0.4s both' }} className="pt-6">
+              <h2 className="font-display text-2xl font-bold text-yellow-400 mb-6 text-center">
                 צפו בפעילות
               </h2>
-
-              <div className="relative w-full overflow-hidden rounded-2xl shadow-xl"
-                   style={{ paddingTop: "56.25%" }}>
-
+              <div
+                className="relative w-full overflow-hidden rounded-2xl shadow-2xl border border-white/15"
+                style={{ paddingTop: '56.25%' }}
+              >
                 <iframe
                   src="https://www.youtube.com/embed/uw-QjeVeR-E"
                   title="סוד המשפט"
@@ -90,16 +101,23 @@ export default function YoungDayanim() {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                ></iframe>
-
+                />
               </div>
             </div>
 
           </div>
         </section>
+
       </main>
 
       <SiteFooter />
+
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </>
   );
 }
