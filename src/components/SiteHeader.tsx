@@ -13,9 +13,9 @@ const NAV = [
 ];
 
 const NEWS_ITEMS = [
-  { text: '📢 ההרשמה למסלול דיינות תשפ"ז פתוחה!', link: null, image: '/גיוס_אברכים.jpg', pdf: null, formLink: null },
+  { text: '📢 ההרשמה למסלול דיינות תשפ"ז פתוחה!', link: null, image: '/avrechimrecruitment.jpg', pdf: null, formLink: null },
   { text: '⚖️ בית הדין לממונות – סניף חדש ברמת השרון', link: '/beit-din', image: null, pdf: null, formLink: null },
-  { text: '🏆 תחרות מאמרים: הלכה ובינה מלאכותית', link: null, image: '/תחרות_מאמרים.jpg', pdf: '/תקנון_תחרות_מאמרים_תשפו.pdf', formLink: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLScVNJRiFvdaTp-2ff_qgfgVmqcXyKol4OoOb19UYyd7TA7THg/formResponse' },
+  { text: '🏆 תחרות מאמרים: הלכה ובינה מלאכותית', link: null, image: '/maamarimcompetition.jpg', pdf: '/maamarim-rules.pdf', formLink: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLScVNJRiFvdaTp-2ff_qgfgVmqcXyKol4OoOb19UYyd7TA7THg/formResponse' },
   { text: '🤝 הצטרפו לתוכנית יששכר וזבולון', link: '/donations', image: null, pdf: null, formLink: null },
 ];
 

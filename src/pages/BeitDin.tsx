@@ -158,7 +158,7 @@ export default function BeitDin() {
                 </a>
 
                 <a
-                  href="/תקנון_בית_הדין.pdf"
+                  href="/תקנון בית הדין.pdf"
                   download
                   className="flex items-center gap-3 rounded-xl border border-white/15 bg-white/8 backdrop-blur-sm px-5 py-4 hover:bg-white/15 hover:border-yellow-400/40 transition-all duration-200 group"
                 >
