@@ -3,39 +3,57 @@ import { useState } from 'react';
 
 type NewsItem = {
   text: string;
-  link?: string | null;
-  image?: string | null;
-  pdf?: string | null;
-  formLink?: string | null;
+  link?: string;
+  image?: string;
+  pdf?: string;
+  formLink?: string;
 };
 
 type LightboxState = {
   image: string;
-  pdf?: string | null;
-  formLink?: string | null;
+  pdf?: string;
+  formLink?: string;
 };
 
+const FALLBACK_IMAGE = '/placeholder-news.jpg';
+
 const NEWS_ITEMS: NewsItem[] = [
-  { text: '📢 ההרשמה למסלול דיינות תשפ״ז פתוחה!', image: '/גיוס_אברכים.jpg' },
-  { text: '⚖️ בית הדין לממונות – סניף חדש ברמת השרון', link: '/beit-din' },
+  {
+    text: '📢 ההרשמה למסלול דיינות תשפ״ז פתוחה!',
+    image: '/avrechimrecruitment.jpg',
+  },
+  {
+    text: '⚖️ בית הדין לממונות – סניף חדש ברמת השרון',
+    link: '/beit-din',
+  },
   {
     text: '🏆 תחרות מאמרים: הלכה ובינה מלאכותית',
-    image: '/תחרות_מאמרים.jpg',
+    image: '/maamarimcompetition.jpg',
     pdf: '/maamarim-rules.pdf',
-    formLink: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLScVNJRiFvdaTp-2ff_qgfgVmqcXyKol4OoOb19UYyd7TA7THg/formResponse',
+    formLink:
+      'https://docs.google.com/forms/d/e/1FAIpQLScVNJRiFvdaTp-2ff_qgfgVmqcXyKol4OoOb19UYyd7TA7THg/viewform',
   },
-  { text: '🤝 הצטרפו לתוכנית יששכר וזבולון', link: '/donations' },
+  {
+    text: '🤝 הצטרפו לתוכנית יששכר וזבולון',
+    link: '/donations',
+  },
 ];
 
 export default function NewsTicker() {
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
+  const [imgError, setImgError] = useState<Record<string, boolean>>({});
+
+  const handleImgError = (src: string) => {
+    setImgError((prev) => ({ ...prev, [src]: true }));
+  };
 
   return (
     <>
+      {/* Styles */}
       <style>{`
         @keyframes ticker-rtl {
           0% { transform: translateX(0); }
-          100% { transform: translateX(100%); }
+          100% { transform: translateX(-50%); }
         }
 
         .ticker-wrapper {
@@ -67,15 +85,15 @@ export default function NewsTicker() {
           >
             <button
               onClick={() => setLightbox(null)}
-              className="absolute -top-10 left-0 text-white text-2xl font-bold hover:text-gray-300"
+              className="absolute -top-10 left-0 text-white text-2xl"
             >
               ✕
             </button>
 
             <img
-              src={lightbox.image}
+              src={lightbox.image || FALLBACK_IMAGE}
               alt="news"
-              className="w-full h-auto rounded-xl shadow-2xl max-h-[70vh] object-contain"
+              className="w-full max-h-[70vh] object-contain rounded-xl shadow-2xl"
             />
 
             {(lightbox.pdf || lightbox.formLink) && (
@@ -84,9 +102,9 @@ export default function NewsTicker() {
                   <a
                     href={lightbox.pdf}
                     download
-                    className="bg-white text-primary font-semibold px-5 py-2.5 rounded-xl shadow hover:bg-gray-50 text-sm"
+                    className="bg-white text-black px-4 py-2 rounded-lg"
                   >
-                    📄 הורד תקנון PDF
+                    📄 הורד תקנון
                   </a>
                 )}
 
@@ -95,9 +113,9 @@ export default function NewsTicker() {
                     href={lightbox.formLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-primary text-white font-semibold px-5 py-2.5 rounded-xl shadow hover:bg-primary/90 text-sm"
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg"
                   >
-                    📝 הרשמה לתחרות
+                    📝 הרשמה
                   </a>
                 )}
               </div>
@@ -107,38 +125,46 @@ export default function NewsTicker() {
       )}
 
       {/* Ticker */}
-      <div className="fixed top-16 inset-x-0 z-30 bg-accent/95 backdrop-blur-md border-b border-accent/20 shadow-sm overflow-hidden">
-        <div className="h-12 flex items-end pb-2">
+      <div className="fixed top-16 inset-x-0 z-30 bg-white/90 backdrop-blur border-b overflow-hidden">
+        <div className="h-12 flex items-center">
           <div className="ticker-wrapper">
             {[0, 1].map((copy) => (
-              <div key={copy} className="ticker-track" aria-hidden={copy === 1}>
-                {NEWS_ITEMS.map((item, i) =>
-                  item.image ? (
+              <div key={copy} className="ticker-track">
+                {NEWS_ITEMS.map((item, i) => {
+                  const hasImage = !!item.image;
+
+                  return hasImage ? (
                     <button
                       key={i}
                       onClick={() =>
                         setLightbox({
-                          image: item.image,
+                          image: imgError[item.image!] ? FALLBACK_IMAGE : item.image!,
                           pdf: item.pdf,
                           formLink: item.formLink,
                         })
                       }
-                      className="inline-flex items-center px-8 text-sm font-medium hover:text-primary transition-colors"
+                      className="flex items-center px-8 text-sm hover:text-blue-600"
                     >
+                      <img
+                        src={imgError[item.image!] ? FALLBACK_IMAGE : item.image!}
+                        onError={() => handleImgError(item.image!)}
+                        alt=""
+                        className="w-6 h-6 rounded-full mr-2 object-cover"
+                      />
                       {item.text}
                       <span className="mx-4 opacity-30">|</span>
                     </button>
                   ) : (
                     <Link
                       key={i}
-                      to={item.link ?? '#'}
-                      className="inline-flex items-center px-8 text-sm font-medium hover:text-primary transition-colors"
+                      to={item.link || '#'}
+                      className="flex items-center px-8 text-sm hover:text-blue-600"
                     >
                       {item.text}
                       <span className="mx-4 opacity-30">|</span>
                     </Link>
-                  )
-                )}
+                  );
+                })}
               </div>
             ))}
           </div>
