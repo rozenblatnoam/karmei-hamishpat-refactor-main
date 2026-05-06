@@ -7,12 +7,12 @@ export default function Contact() {
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     setStatus("");
 
-    const form = e.target;
+    const form = e.currentTarget;
     const data = new FormData(form);
 
     try {

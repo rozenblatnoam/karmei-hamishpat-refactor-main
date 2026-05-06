@@ -11,7 +11,7 @@ type NewsItem = {
 const NEWS_ITEMS: NewsItem[] = [
   {
     text: '📢 ההרשמה למסלול דיינות תשפ״ז פתוחה!',
-    image: '/avrechim-recruitment.jpg',
+    image: '/avrechimrecruitment.jpg',
   },
   {
     text: '⚖️ בית הדין לממונות – סניף חדש ברמת השרון',
@@ -19,9 +19,9 @@ const NEWS_ITEMS: NewsItem[] = [
   },
   {
     text: '🏆 תחרות מאמרים: הלכה ובינה מלאכותית',
-    image: '/maamarim-competition.jpg',
+    image: '/maamarimcompetition.jpg',
     pdf: '/maamarim-rules.pdf',
-    formLink: 'https://docs.google.com/forms/d/e/1FAIpQLScVNJRiFvdaTp-2ff_qgfgVmqcXyKol4OoOb19UYyd7TA7THg/viewform',
+    formLink: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLScVNJRiFvdaTp-2ff_qgfgVmqcXyKol4OoOb19UYyd7TA7THg/formResponse',
   },
   {
     text: '🤝 הצטרפו לתוכנית יששכר וזבולון',
