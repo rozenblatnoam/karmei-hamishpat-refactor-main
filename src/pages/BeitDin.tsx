@@ -145,7 +145,7 @@ export default function BeitDin() {
               <h2 className="font-display text-2xl font-bold text-yellow-400 mb-5">מידע שימושי וטפסים</h2>
               <div className="space-y-3">
                 <a
-                  href="/טופס-הזמנת-דיון.docx"
+                  href="/tofes-hazmant-diyun.docx"
                   download
                   className="flex items-center gap-3 rounded-xl border border-white/15 bg-white/8 backdrop-blur-sm px-5 py-4 hover:bg-white/15 hover:border-yellow-400/40 transition-all duration-200 group"
                 >
@@ -158,7 +158,7 @@ export default function BeitDin() {
                 </a>
 
                 <a
-                  href="/תקנון בית הדין.pdf"
+                  href="/takanon-beit-hadin.pdf"
                   download
                   className="flex items-center gap-3 rounded-xl border border-white/15 bg-white/8 backdrop-blur-sm px-5 py-4 hover:bg-white/15 hover:border-yellow-400/40 transition-all duration-200 group"
                 >

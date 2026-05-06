@@ -54,7 +54,7 @@ export default function RazeiMishpat() {
               {/* לוגו המכון */}
               <div className="bg-white/90 backdrop-blur-sm rounded-2xl px-8 py-4 shadow-xl border border-white/30">
                 <img
-                  src="/מכון-רזי-המשפט.png"
+                  src="/mazkon-razei-hamishpat.png"
                   alt="לוגו מכון רזי המשפט"
                   className="h-20 w-auto object-contain mx-auto"
                 />

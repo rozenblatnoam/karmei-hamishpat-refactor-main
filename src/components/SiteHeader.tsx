@@ -8,6 +8,7 @@ const NAV = [
   { label: 'בית הדין', href: '/beit-din' },
   { label: 'מכון רזי המשפט', href: '/razei-mishpat' },
   { label: 'דיינים צעירים', href: '/young-dayanim' },
+  { label: 'הלכה יומית', href: '/halacha-yomit' },
   { label: 'תרומות', href: '/donations' },
   { label: 'צור קשר', href: '/contact' },
 ];

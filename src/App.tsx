@@ -11,6 +11,7 @@ import RazeiMishpat from "./pages/RazeiMishpat.tsx";
 import YoungDayanim from "./pages/YoungDayanim.tsx";
 import Donations from "./pages/Donations.tsx";
 import Contact from "./pages/Contact.tsx";
+import HalachaYomit from "./pages/HalachaYomit.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -129,6 +130,7 @@ const App = () => (
           <Route path="/beit-din" element={<BeitDin />} />
           <Route path="/razei-mishpat" element={<RazeiMishpat />} />
           <Route path="/young-dayanim" element={<YoungDayanim />} />
+          <Route path="/halacha-yomit" element={<HalachaYomit />} />
           <Route path="/donations" element={<Donations />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
