@@ -12,12 +12,31 @@ function getCurrentPage(): number {
   return START_PAGE + daysSince;
 }
 
+function toHebrewLetters(n: number): string {
+  const hundreds = ['', 'ק', 'ר', 'ש', 'ת', 'תק', 'תר', 'תש', 'תת', 'תתק'];
+  const tens    = ['', 'י', 'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ'];
+  const ones    = ['', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט'];
+  let result = '';
+  if (n >= 100) { result += hundreds[Math.floor(n / 100)]; n %= 100; }
+  if (n === 15) return result + 'טו';
+  if (n === 16) return result + 'טז';
+  if (n >= 10)  { result += tens[Math.floor(n / 10)]; n %= 10; }
+  return result + ones[n];
+}
+
+function addGershayim(s: string): string {
+  if (s.length <= 1) return s + '׳';
+  return s.slice(0, -1) + '״' + s.slice(-1);
+}
+
 function getHebrewDate(): string {
-  return new Intl.DateTimeFormat('he-IL-u-ca-hebrew-nu-hebr', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  }).format(new Date());
+  const parts = new Intl.DateTimeFormat('he-IL-u-ca-hebrew', {
+    day: 'numeric', month: 'long', year: 'numeric',
+  }).formatToParts(new Date());
+  const day   = parseInt(parts.find(p => p.type === 'day')?.value  ?? '0');
+  const month = parts.find(p => p.type === 'month')?.value ?? '';
+  const year  = parseInt(parts.find(p => p.type === 'year')?.value ?? '0');
+  return `${addGershayim(toHebrewLetters(day))} ב${month} ${addGershayim(toHebrewLetters(year % 1000))}`;
 }
 
 function getGregorianDate(): string {
