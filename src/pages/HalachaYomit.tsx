@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 
@@ -49,6 +50,7 @@ function getGregorianDate(): string {
 }
 
 export default function HalachaYomit() {
+  useEffect(() => { document.title = 'הלכה יומית | כולל ענב'; }, []);
   const page = getCurrentPage();
   const hebrewDate = getHebrewDate();
   const gregorianDate = getGregorianDate();

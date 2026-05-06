@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import NewsTicker from '@/components/NewsTicker';
@@ -41,6 +42,7 @@ const milestones = [
 ];
 
 export default function Institute() {
+  useEffect(() => { document.title = 'המכון | כולל ענב – כרמי המשפט'; }, []);
   return (
     <>
       <SiteHeader />

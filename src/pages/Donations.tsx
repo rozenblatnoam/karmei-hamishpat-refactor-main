@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import NewsTicker from '@/components/NewsTicker';
@@ -21,6 +21,7 @@ const inputCls =
   'w-full rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-400/60 focus:border-yellow-400/50 transition';
 
 export default function Donations() {
+  useEffect(() => { document.title = 'תרומות | כולל ענב'; }, []);
   const [donationType, setDonationType] = useState<'once' | 'monthly'>('once');
   const [selectedAmount, setSelectedAmount] = useState<number | null>(360);
   const [customAmount, setCustomAmount] = useState('');

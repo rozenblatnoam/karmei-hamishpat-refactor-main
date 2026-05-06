@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import NewsTicker from '@/components/NewsTicker';
@@ -15,6 +16,7 @@ const educationItems = [
 ];
 
 export default function RazeiMishpat() {
+  useEffect(() => { document.title = 'מכון רזי המשפט | כולל ענב'; }, []);
   return (
     <>
       <SiteHeader />

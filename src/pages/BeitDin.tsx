@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import NewsTicker from '@/components/NewsTicker';
@@ -37,6 +38,7 @@ const services = [
 ];
 
 export default function BeitDin() {
+  useEffect(() => { document.title = 'בית הדין לממונות | כולל ענב'; }, []);
   return (
     <>
       <SiteHeader />

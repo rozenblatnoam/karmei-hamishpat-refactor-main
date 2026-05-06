@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import NewsTicker from '@/components/NewsTicker';
 
 export default function Contact() {
+  useEffect(() => { document.title = 'צור קשר | כולל ענב'; }, []);
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
 
