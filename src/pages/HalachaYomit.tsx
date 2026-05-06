@@ -77,10 +77,9 @@ export default function HalachaYomit() {
               onContextMenu={(e) => e.preventDefault()}
             >
               <iframe
-                src={`/halakha.pdf#toolbar=0&navpanes=0&statusbar=0&view=FitH`}
+                src="/halakha.pdf#toolbar=0&navpanes=0"
                 className="w-full h-full border-0"
                 title={`הלכה יומית – ${hebrewDate}`}
-                sandbox="allow-same-origin allow-scripts"
               />
               {/* שכבה שקופה למניעת תפריט הורדה */}
               <div
