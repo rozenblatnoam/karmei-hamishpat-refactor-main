@@ -3,17 +3,17 @@ import SiteFooter from '@/components/SiteFooter';
 
 const START_DATE = new Date('2026-05-06');
 START_DATE.setHours(0, 0, 0, 0);
-const TOTAL_PDFS = 1;
+const START_PAGE = 243;
 
-function getPdfIndex(): number {
+function getCurrentPage(): number {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const daysSince = Math.floor((today.getTime() - START_DATE.getTime()) / (1000 * 60 * 60 * 24));
-  return (((daysSince % TOTAL_PDFS) + TOTAL_PDFS) % TOTAL_PDFS) + 1;
+  return START_PAGE + daysSince;
 }
 
 function getHebrewDate(): string {
-  return new Intl.DateTimeFormat('he-IL-u-ca-hebrew', {
+  return new Intl.DateTimeFormat('he-IL-u-ca-hebrew-nu-hebr', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -30,7 +30,7 @@ function getGregorianDate(): string {
 }
 
 export default function HalachaYomit() {
-  const pdfIndex = getPdfIndex();
+  const page = getCurrentPage();
   const hebrewDate = getHebrewDate();
   const gregorianDate = getGregorianDate();
 
@@ -65,8 +65,7 @@ export default function HalachaYomit() {
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
 
             {/* כותרת הכרטיס */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-              <span className="text-white/50 text-sm">הלכה מספר {pdfIndex}</span>
+            <div className="flex items-center justify-end px-6 py-4 border-b border-white/10">
               <span className="text-yellow-300 font-semibold text-sm">📜 קריאה בלבד</span>
             </div>
 
@@ -77,15 +76,11 @@ export default function HalachaYomit() {
               onContextMenu={(e) => e.preventDefault()}
             >
               <iframe
-                src="/halakha.pdf#toolbar=0&navpanes=0"
+                src={`/halakha.pdf#page=${page}&toolbar=0&navpanes=0`}
                 className="w-full h-full border-0"
                 title={`הלכה יומית – ${hebrewDate}`}
               />
-              {/* שכבה שקופה למניעת תפריט הורדה */}
-              <div
-                className="absolute inset-0 pointer-events-none select-none"
-                style={{ zIndex: 1 }}
-              />
+              <div className="absolute inset-0 pointer-events-none select-none" style={{ zIndex: 1 }} />
             </div>
           </div>
         </section>
