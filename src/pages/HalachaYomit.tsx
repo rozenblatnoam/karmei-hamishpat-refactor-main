@@ -1,7 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
-import { useIsMobile } from '@/hooks/use-mobile';
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
 
 const START_DATE = new Date('2026-05-06');
 START_DATE.setHours(0, 0, 0, 0);
@@ -43,19 +50,23 @@ function getHebrewDate(): string {
 
 function getGregorianDate(): string {
   return new Intl.DateTimeFormat('he-IL', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   }).format(new Date());
 }
 
 export default function HalachaYomit() {
   useEffect(() => { document.title = 'הלכה יומית | כולל ענב'; }, []);
-  const isMobile = useIsMobile();
+  const [containerWidth, setContainerWidth] = useState(800);
   const page = getCurrentPage();
   const hebrewDate = getHebrewDate();
   const gregorianDate = getGregorianDate();
+
+  useEffect(() => {
+    const update = () => setContainerWidth(Math.min(window.innerWidth - 32, 900));
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   return (
     <>
@@ -87,41 +98,27 @@ export default function HalachaYomit() {
         <section className="max-w-4xl mx-auto px-4 pb-16 -mt-4">
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
 
-            {/* כותרת הכרטיס */}
             <div className="flex items-center justify-end px-6 py-4 border-b border-white/10">
               <span className="text-yellow-300 font-semibold text-sm">📜 קריאה בלבד</span>
             </div>
 
-            {/* PDF */}
-            {isMobile ? (
-              <div className="flex flex-col items-center justify-center gap-6 py-16 px-6 text-center">
-                <span className="text-6xl">📖</span>
-                <p className="text-white/70 text-base">
-                  לצפייה בהלכה היומית לחץ על הכפתור – הקובץ ייפתח בדפדפן שלך
-                </p>
-                <a
-                  href={`/halakha.pdf#page=${page}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-8 py-4 rounded-2xl text-lg transition-colors shadow-lg"
-                >
-                  פתח את הלכה יומית
-                </a>
-              </div>
-            ) : (
-              <div
-                className="relative w-full"
-                style={{ height: '78vh' }}
-                onContextMenu={(e) => e.preventDefault()}
+            <div
+              className="flex justify-center py-4 select-none"
+              onContextMenu={(e) => e.preventDefault()}
+            >
+              <Document
+                file="/halakha.pdf"
+                loading={<div className="text-white/50 py-20 text-center">טוען...</div>}
+                error={<div className="text-red-400 py-20 text-center">שגיאה בטעינת הקובץ</div>}
               >
-                <iframe
-                  src={`/halakha.pdf#page=${page}&toolbar=0&navpanes=0`}
-                  className="w-full h-full border-0"
-                  title={`הלכה יומית – ${hebrewDate}`}
+                <Page
+                  pageNumber={page}
+                  width={containerWidth}
+                  renderTextLayer={false}
+                  renderAnnotationLayer={false}
                 />
-                <div className="absolute inset-0 pointer-events-none select-none" style={{ zIndex: 1 }} />
-              </div>
-            )}
+              </Document>
+            </div>
           </div>
         </section>
 
