@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const START_DATE = new Date('2026-05-06');
 START_DATE.setHours(0, 0, 0, 0);
@@ -51,6 +52,7 @@ function getGregorianDate(): string {
 
 export default function HalachaYomit() {
   useEffect(() => { document.title = 'הלכה יומית | כולל ענב'; }, []);
+  const isMobile = useIsMobile();
   const page = getCurrentPage();
   const hebrewDate = getHebrewDate();
   const gregorianDate = getGregorianDate();
@@ -91,18 +93,35 @@ export default function HalachaYomit() {
             </div>
 
             {/* PDF */}
-            <div
-              className="relative w-full"
-              style={{ height: '78vh' }}
-              onContextMenu={(e) => e.preventDefault()}
-            >
-              <iframe
-                src={`/halakha.pdf#page=${page}&toolbar=0&navpanes=0`}
-                className="w-full h-full border-0"
-                title={`הלכה יומית – ${hebrewDate}`}
-              />
-              <div className="absolute inset-0 pointer-events-none select-none" style={{ zIndex: 1 }} />
-            </div>
+            {isMobile ? (
+              <div className="flex flex-col items-center justify-center gap-6 py-16 px-6 text-center">
+                <span className="text-6xl">📖</span>
+                <p className="text-white/70 text-base">
+                  לצפייה בהלכה היומית לחץ על הכפתור – הקובץ ייפתח בדפדפן שלך
+                </p>
+                <a
+                  href={`/halakha.pdf#page=${page}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-8 py-4 rounded-2xl text-lg transition-colors shadow-lg"
+                >
+                  פתח את הלכה יומית
+                </a>
+              </div>
+            ) : (
+              <div
+                className="relative w-full"
+                style={{ height: '78vh' }}
+                onContextMenu={(e) => e.preventDefault()}
+              >
+                <iframe
+                  src={`/halakha.pdf#page=${page}&toolbar=0&navpanes=0`}
+                  className="w-full h-full border-0"
+                  title={`הלכה יומית – ${hebrewDate}`}
+                />
+                <div className="absolute inset-0 pointer-events-none select-none" style={{ zIndex: 1 }} />
+              </div>
+            )}
           </div>
         </section>
 
