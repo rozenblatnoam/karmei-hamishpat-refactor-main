@@ -45,7 +45,7 @@ export default function SiteHeader() {
       <style>{`
         @keyframes ticker-rtl {
           0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(50%); }
         }
         .ticker-wrapper {
           display: flex;
@@ -59,6 +59,7 @@ export default function SiteHeader() {
         .ticker-track {
           display: flex;
           white-space: nowrap;
+          flex-shrink: 0;
         }
       `}</style>
 
