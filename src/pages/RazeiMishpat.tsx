@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
-import NewsTicker from '@/components/NewsTicker';
 
 const researchItems = [
   { title: 'בית הוראה', text: 'מתן מענה הלכתי זמין בכל תחומי ההלכה, עם התמחות מיוחדת בדיני ממונות.' },
@@ -20,7 +19,6 @@ export default function RazeiMishpat() {
   return (
     <>
       <SiteHeader />
-      <NewsTicker />
 
       <main className="min-h-screen" dir="rtl">
 

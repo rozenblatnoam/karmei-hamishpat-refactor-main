@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
-import NewsTicker from '@/components/NewsTicker';
 
 export default function Contact() {
   useEffect(() => { document.title = 'צור קשר | כולל ענב'; }, []);
@@ -42,7 +41,6 @@ export default function Contact() {
   return (
     <>
       <SiteHeader />
-      <NewsTicker />
 
       <main className="min-h-screen" dir="rtl">
 

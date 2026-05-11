@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
-import NewsTicker from '@/components/NewsTicker';
 
 const branches = [
   {
@@ -42,7 +41,6 @@ export default function BeitDin() {
   return (
     <>
       <SiteHeader />
-      <NewsTicker />
 
       <main className="min-h-screen" dir="rtl">
 

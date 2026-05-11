@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
-import NewsTicker from '@/components/NewsTicker';
 
 const HYP_MASOF    = import.meta.env.VITE_HYP_MASOF ?? '';
 const HYP_PASSP    = import.meta.env.VITE_HYP_PASSP ?? '';
@@ -83,7 +82,6 @@ export default function Donations() {
   return (
     <>
       <SiteHeader />
-      <NewsTicker />
 
       <main className="min-h-screen" dir="rtl">
 
